@@ -1,0 +1,18 @@
+
+.card { 
+    float: right;
+    margin: 1rem;
+    width: 200PX;
+    height: 200px;
+    background: #37464e;
+}
+h5 , p {
+    color: white;
+}
+.avatarDisplay {
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 50vh;
+    overflow: hidden;
+    overflow-y: scroll;
+}

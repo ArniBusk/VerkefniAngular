@@ -1,0 +1,49 @@
+<h4>Add Avatar</h4>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-10">
+      <form (ngSubmit)="onSubmit()" #avatarForm="ngForm">
+        <div class="form-group">
+          <label for="Name">Name:</label>
+          <input type="text" class="form-control" id="name" required [(ngModel)]="newAvatar.Name" name="name">
+        </div>
+
+        <div class="form-group">
+          <label for="Effect">Effect:</label>
+          <select class="form-control" id="Effect" required [(ngModel)]="newAvatar.Effect" name="Effect" #Effect='ngModel'>
+            <option value="0">Increases Damage of Cards</option>
+            <option value="1">Decreases Damage Taken</option>
+            <option value="2">Reduces Mana Cost</option>
+            <option value="3">Increases HP of party</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="Hp">Hp:</label>
+          <input type="text" class="form-control" id="Hp" required [(ngModel)]="newAvatar.Hp" name="Hp">
+        </div>
+
+        <div class="form-group">
+          <label for="Lore">Lore:</label>
+          <input type="text" class="form-control" id="Lore" required [(ngModel)]="newAvatar.Lore" name="Lore">
+        </div>
+
+        <div class="form-group">
+          <label for="Phrase">Phrase:</label>
+          <input type="text" class="form-control" id="Phrase" required [(ngModel)]="newAvatar.Phrase" name="Phrase">
+        </div>
+
+        <div class="form-group">
+          <label for="Cost">Cost:</label>
+          <input type="text" class="form-control" id="Cost" required [(ngModel)]="newAvatar.Cost" name="Cost">
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!avatarForm.form.valid || submitted">Add Avatar</button>
+        <button type="button" class="btn btn-default" (click)="resetAvatar(); avatarForm.reset()">New Hero</button>
+      </form>
+    </div>
+    <div class="col-2 bg-success text-center" *ngIf="submitted">
+      <h1>Avatar Added</h1>
+    </div>
+  </div>
+</div>

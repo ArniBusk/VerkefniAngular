@@ -1,0 +1,19 @@
+<h3>Avatars</h3>
+<div class="container">
+  <div class="row">
+  <div class="col-9 avatarDisplay">
+  <div class="card" (click)="onSelect(a)" *ngFor="let a of avatarlist">
+      <div class="card-body">
+        <h5 class="card-title">{{a.Name}}</h5>
+        <hr>
+        <h6 class="card-subtitle mb-2 text-muted"><i>{{a.Phrase}}</i></h6>
+        <p class="card-text">{{a.Lore}}</p>
+      </div>
+    </div>
+</div>
+<div class="col-3" *ngIf="!selectedAvatar"></div>
+  <div class="col-3" *ngIf="selectedAvatar">
+    <app-store-avatar-stats [displayedAvatar]="selectedAvatar" [event]="eventSubject.asObservable()"></app-store-avatar-stats>
+  </div>
+  </div>
+</div>

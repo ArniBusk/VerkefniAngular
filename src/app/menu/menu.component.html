@@ -1,0 +1,49 @@
+<div class="container-fluid head" *ngIf="showHead">
+  <img src="/src/assets/AvatarLogoLarge.png"  alt="Avatar">
+</div>
+<div class="container-fluid">
+ <div class="row diamond text-light text-center">
+   <div class="col-3" *ngIf="isUserLoggedIn && !isAdmin"></div>
+   <div class="col-2" *ngIf="isUserLoggedIn && isAdmin"></div>
+
+   <div class="col-2" *ngIf="isUserLoggedIn"><h2><a class="navbarlink" [ngClass]="{'class': true}" [routerLink]="[ '/collection']">Play</a></h2></div>
+   <div class="col-2" *ngIf="isUserLoggedIn"><h2><a class="navbarlink" [ngClass]="{'class': true}" [routerLink]="[ '/collection']">Collection</a></h2></div>
+   <div class="col-2" *ngIf="isUserLoggedIn"><h2><a class="navbarlink" [ngClass]="{'class': true}" [routerLink]="[ '/store']">Store</a></h2></div>
+   <div class="col-2" *ngIf="isUserLoggedIn && isAdmin"><h2><a class="navbarlink" [ngClass]="{'class': true}" [routerLink]="[ '/admin']">Admin</a></h2></div>
+   <div class="col-8" *ngIf="!isUserLoggedIn"></div>
+    <div class="col-1">
+      <!--#region þegar user er ekki logged in þá er þetta í dropdowninu -->
+      <div ngbDropdown class="d-inline-block" *ngIf="!isUserLoggedIn">
+        <button class="btn btn-outline-light" id="loginDropDown" ngbDropdownToggle>Account Settings</button>
+        <div ngbDropdownMenu aria-labelledby="loginDropDown" *ngIf="!isUserLoggedIn">
+          <form class="px-4 py-3" #loginForm ="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="form-group">
+              <label for="Email">Email address</label>
+              <input type="text" [(ngModel)]="loginModel.Email"  placeholder="email@example.com" name="Email" required>
+            </div>
+            <div class="form-group">
+              <label for="Password">Password</label>
+              <input type="password" [(ngModel)]="loginModel.Password"  placeholder="Password" name="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </form>
+          <div class="dropdown-divider"></div>
+          <a [routerLink]="[ '/register']">Register</a>
+        </div>
+      </div>
+      
+      <!--#endregion -->
+    <div class="col-1" *ngIf="isUserLoggedIn && isAdmin"></div>
+    
+      <div ngbDropdown class="d-inline-block" *ngIf="isUserLoggedIn">
+          <button class="btn btn-outline-light" id="loginDropDown" ngbDropdownToggle>{{loginModel.Email}}</button>
+          <div ngbDropdownMenu aria-labelledby="loginDropDown" *ngIf="isUserLoggedIn">
+              <button class="dropdown-item" (click)="onLogout()">Log Out</button>
+              <button class="dropdown-item" (click)="onAccount()">Account Settings</button>
+          </div>
+      </div>
+    <div class="col-2" *ngIf="isUserLoggedIn && !isAdmin"></div>
+    </div>
+ 
+</div>
+</div>

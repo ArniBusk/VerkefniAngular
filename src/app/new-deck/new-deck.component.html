@@ -1,0 +1,23 @@
+<div class="component">
+  <div class="col">
+    <ul>
+      <li *ngFor="let c of cardList" (click)="selectCard(c)">{{c.Name}}</li>
+    </ul> 
+     <input type="text" [(ngModel)]="tempDeckName" placeholder="Deck Name" *ngIf="!deckbool">
+    <button *ngIf="!deckbool" (click)="makeNewDeck()">Make new Deck</button>
+    <button *ngIf="!deckFull && deckbool" (click)="addCardToDeck()">
+      Add
+    </button>
+    <button *ngIf="deckFull && !deckbool" disabled>
+        Add
+      </button>
+      <button *ngIf="!deckFull && deckbool" disabled>Save Deck</button>
+      <button *ngIf="deckFull" (click)="saveDeck()">Save Deck</button>
+  </div>
+  <div class="col">
+    <h6 *ngIf="deckbool">{{tempDeckName}}</h6>
+  <ul *ngIf="newDeck">
+    <li *ngFor="let ca of newDeck">{{ca.Name}}</li>
+  </ul>
+  </div>
+</div>

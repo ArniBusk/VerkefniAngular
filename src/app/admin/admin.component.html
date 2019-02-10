@@ -1,0 +1,101 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 ">
+      <h4>Add</h4>
+      <hr>
+      <h5 (click)="displaySelect(0)">Add Avatar</h5>
+      <h5 (click)="displaySelect(1)">Add Card</h5>
+      <br>
+      <h4>Edit</h4>
+      <hr>
+      <h5 (click)="displaySelect(2)">Edit Avatar</h5>
+      <h5 (click)="displaySelect(3)">Edit Card</h5>
+      <br>
+      <h4>Delete</h4>
+      <hr>
+      <h5 (click)="displaySelect(4)">Delete Avatar</h5>
+      <h5 (click)="displaySelect(5)">Delete Card</h5>
+      <h5 (click)="displaySelect(6)">Delete Review</h5>
+    </div>
+    <div class="col-10">
+      <span [ngSwitch]="displayIndex">
+        <div  *ngSwitchCase="0">
+          <app-add-avatar></app-add-avatar>
+        </div>
+        <div  *ngSwitchCase="1">
+          <app-add-card></app-add-card>
+        </div>
+        <div *ngSwitchCase="2">
+          <app-edit-avatar></app-edit-avatar>
+        </div>
+        <div *ngSwitchCase="3">
+          <app-edit-card></app-edit-card>
+        </div>
+        <div *ngSwitchCase="4">
+          <h4>Delete Avatar</h4>
+          <div class="container-fluid row">
+            <div class="col-3">
+              <ul>
+                <li class="row" *ngFor="let a of avatarList" (click)="onAvatarSelect(a)">{{a.Name}}</li>
+              </ul>
+            </div>
+            <div class="col-9" *ngIf="selectedAvatar">
+              <h3><i>{{selectedAvatar.Name}}</i></h3>
+            <label>HP: {{selectedAvatar.Hp}}</label>
+            <br>
+            <label>Effect Index: {{selectedAvatar.Effect}}
+            </label>
+            <br>
+            <button (click)="deleteAvatar()">Delete Avatar</button>
+          </div>
+          </div>
+        
+    </div>
+    <div *ngSwitchCase="5">
+      <h4>Delete Card</h4>
+      <div class="container-fluid row">
+        <div class="col-3">
+          <ul>
+            <li class="row" *ngFor="let c of cardList" (click)="onCardSelect(c)">{{c.Name}}</li>
+          </ul>
+        </div>
+        <div class="col-9" *ngIf="selectedCard">
+            <h3><i>{{selectedCard.Name}}</i></h3>
+            <label>HP: {{selectedCard.Hp}}</label> <br>
+            <label>Dps: {{selectedCard.Dps}}</label> <br>
+            <label>Mana: {{selectedCard.Mana}}</label> <br>
+            <label>Info: {{selectedCard.Info}}</label> <br>
+            <label>CardType index: {{selectedCard.CardType}}</label> <br>
+            <button type="button" class="btn btn-warning" (click)="deleteCard()">Delete Card</button>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" *ngSwitchCase="6">
+      <div class="row">
+        <div class="col-3">
+           <ul>
+        <li *ngFor="let r of reviewList" (click)="selectReview(r)">
+          {{r.Asessment}}
+        </li>
+      </ul>
+        </div>
+        <div class="col-9" *ngIf="selectedReview && reviewAvatar">
+          <h4>{{reviewAvatar.Name}}</h4>
+          <hr>
+          <p>{{selectedReview.Asessment}}</p>
+          <i>{{selectedReview.UserId}}</i>
+          <hr>
+          <sub>{{selectedReview.Time | date}}</sub> 
+          <br>
+          <button (click)="deleteReview()">Delete Review</button>
+        </div>
+      </div>
+     
+    </div>
+    <div *ngSwitchDefault>
+      Default
+    </div>
+    </span>
+  </div>
+</div>
+</div>

@@ -1,0 +1,18 @@
+/*.head {
+    height: 100px;
+    min-width: 100%;
+}
+.mainmenu {
+font-size: 60px;
+}
+
+.navcolumn {
+    top: 50%;
+    font-size: 40px;
+   
+} */
+
+.customBackground {
+    background-color: #8c9fa8;
+    min-height: 600px;
+}

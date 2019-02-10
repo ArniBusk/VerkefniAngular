@@ -1,0 +1,9 @@
+<div class="container-fluid head" *ngIf="showHead">
+  <img src="/src/assets/AvatarLogoLarge.png"  alt="Avatar">
+</div>
+<div class="container-fluid text-center " *ngIf="!loggedin">
+  <h1>Log in to continue</h1>
+</div>
+<div class="container-fluid text-center" *ngIf="loggedin">
+  <h1>Welcome to Avatar</h1>
+</div>

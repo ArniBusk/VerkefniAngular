@@ -1,0 +1,82 @@
+<!--NavBar to view Decks and Avatars-->
+<div class="container text-center">
+  <div class="row">
+    <div class="col"><h4 (click)="editDisplay(0)">Decks</h4></div>
+    <div class="col"><h4 (click)="editDisplay(1)">Avatars</h4></div>
+    <div class="col"><h4 (click)="editDisplay(2)">Reviews</h4></div>
+  </div>
+</div>
+<div *ngIf="index === 0">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+       <ul *ngIf="decklist">
+        <li *ngFor="let i of decklist" (click)="selectDeck(i)">{{i}}</li>
+       </ul>
+        <button (click)="newDeck()">Make New Deck</button>
+        <button (click)="getDecks()" hidden>get users Decks</button>
+      </div>
+      <div class="col-6">
+        <ul *ngIf="selectedDeckCards">
+          <li *ngFor="let c of selectedDeckCards">{{c.Name}}</li>
+        </ul>
+      </div>
+      <div class="col-3" *ngIf="showNew">
+        <app-new-deck (showNewDeckComp)="onEdit($event)"></app-new-deck>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="index === 1">
+  <div class="container">
+    <div class="row">
+        <div class="col-9 avatarDisplay" *ngIf="avatarList.length > 0">
+            <div class="card" (click)="onSelect(a)" *ngFor="let a of avatarList">
+                <div class="card-body">
+                  <h5 class="card-title">{{a.Name}}</h5>
+                  <hr>
+                  <h6 class="card-subtitle mb-2 text-muted"><i>{{a.Phrase}}</i></h6>
+                  <p class="card-text">{{a.Lore}}</p>
+                </div>
+              </div>
+          </div>
+          <div class="col-9 text-center" *ngIf="avatarList.length === 0">
+            <h4>You have no Avatars, Visit the store to buy some</h4>
+
+          </div>
+          <div class="col-3" *ngIf="!selectedAvatar"></div>
+      <div class="col-3" *ngIf="selectedAvatar">
+        <app-store-avatar-stats [displayedAvatar]="selectedAvatar" [event]="eventSubject.asObservable()"></app-store-avatar-stats>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="index === 2">
+  <div class="container">
+    <div class="container">
+      <div class="row">
+        <div class="col-9">
+          <ul>
+            <li *ngFor="let i of reviewList" (click)="selectReview(i)">{{i.Asessment}}</li>
+          </ul>
+        </div>
+
+        <div class="col-3" *ngIf="selectedReview && reviewAvatar">
+          <h3>{{reviewAvatar.Name}}</h3>
+          <hr>
+          {{selectedReview.Asessment}}
+          <br>
+          <sub>{{selectedReview.Time | date}}</sub>
+          <br>
+          <button (click)="deleteReview()">Delete Review</button> <br>
+          <button (click)="editReview()">Edit Review</button>
+          <div class="container-fluid" *ngIf="editReviewBool">
+            <input type="text" [(ngModel)]="newReview">
+            <br>
+            <button (click)="saveReview()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

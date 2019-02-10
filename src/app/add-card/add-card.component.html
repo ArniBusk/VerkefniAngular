@@ -1,0 +1,51 @@
+<h4>Add Card</h4>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-10">
+      <form (ngSubmit)="onSubmit()" #cardForm="ngForm">
+
+        <div class="form-group">
+          <label for="Name">Name:</label>
+          <input type="text" class="form-control" id="name" required
+            [(ngModel)]="newCard.Name" name="name">
+        </div>
+
+        <div class="form-group">
+          <label for="Hp">Hp:</label>
+          <input type="number" class="form-control" id="hp" required
+            [(ngModel)]="newCard.Hp" name="hp">
+        </div>
+
+        <div class="form-group">
+            <label for="Dps">Dps:</label>
+            <input type="number" class="form-control" id="dps" required
+              [(ngModel)]="newCard.Dps" name="dps">
+          </div>
+
+          <div class="form-group">
+              <label for="Mana">Mana:</label>
+              <input type="number" class="form-control" id="mana" required
+                [(ngModel)]="newCard.Mana" name="mana">
+            </div>
+
+          <div class="form-group">
+          <label for="Info">Info:</label>
+          <input type="text" class="form-control" id="info" required
+            [(ngModel)]="newCard.Info" name="info">
+        </div>
+
+        <div class="form-group">
+            <label for="CardType">CardType:</label>
+            <input type="number" class="form-control" id="cardtype" required
+              [(ngModel)]="newCard.CardType" name="cardtype">
+          </div>
+          <button type="submit" class="btn btn-success" [disabled]="!cardForm.form.valid || submitted">Add Card</button>
+          <button type="button" class="btn btn-default" (click)="resetCard(); cardForm.reset()">New Card</button>
+
+      </form>
+    </div>
+    <div class="col-2 bg-success text-center" *ngIf="submitted">
+        <h1>Card Added</h1>
+      </div>
+  </div>
+</div>

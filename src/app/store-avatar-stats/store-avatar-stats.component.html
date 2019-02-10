@@ -1,0 +1,43 @@
+<div class="container-fluid" >
+<div class="col">
+  <h3><i>{{displayedAvatar.Name}}</i></h3>
+  <hr> 
+</div>
+<label>HP: {{displayedAvatar.Hp}}</label>
+<br>
+<label>Effect<hr> <p>{{effect}}</p></label>
+<br>
+<button (click)="buyAvatar()" *ngIf="!owned">{{displayedAvatar.Cost}}</button>
+<button  *ngIf="owned" disabled>Owned</button>
+<button *ngIf="owned" (click)="sellAvatar()">Sell</button>
+<button (click)="reviewToggle()">Toggle Reviews</button>
+</div>
+
+<div class="container-fluid" *ngIf="showReviews">
+  <ul *ngIf="reviews">
+    <li *ngFor="let r of reviews" (click)="selectReview(r)">
+      {{r.Asessment}}
+      
+    </li>
+    <div class="container-fluid" *ngIf="selectedReview">
+      <br>
+        <i>{{selectedReview.Asessment}}</i>
+        <br>
+        {{selectedReview.UserId}}
+        <hr>
+        <sub>{{selectedReview.Time | date}}</sub>
+      </div>
+  </ul>
+
+  <p>No Reviews on Avatar</p>
+  <button (click)="addReviewToggle()">Add Review</button>
+</div>
+
+<div class="container-fluid" *ngIf="addReview">
+    <div class="">
+      <label>Review</label>
+      <input type="text" [(ngModel)]="newReview.Asessment" placeholder="What do you have to say?" >
+      <button (click)="submitReview()">Submit Review</button>
+    </div>
+ 
+</div>

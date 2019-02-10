@@ -1,0 +1,55 @@
+<h4>Edit Avatar</h4>
+<hr>
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-3" *ngIf="avatarList">
+          <ul>
+            <li class="row" *ngFor="let a of avatarList" (click)="selectAvatar(a)">{{a.Name}}</li>
+          </ul>
+        </div>
+    <div class="col-6" *ngIf="selectedAvatar">
+      <h4>Selected Avatar</h4>
+      <form (ngSubmit)="onSubmit()" #avatarForm="ngForm">
+        <div class="form-group">
+          <label for="Name">Name:</label>
+          <input type="text" class="form-control" id="name" required [(ngModel)]="selectedAvatar.Name" name="name">
+        </div>
+
+        <div class="form-group">
+          <label for="Effect">Effect:</label>
+          <select class="form-control" id="Effect" required [(ngModel)]="selectedAvatar.Effect" name="Effect" #Effect='ngModel'>
+            <option value="0">Increases Damage of Cards</option>
+            <option value="1">Decreases Damage Taken</option>
+            <option value="2">Reduces Mana Cost</option>
+            <option value="3">Increases HP of party</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="Hp">Hp:</label>
+          <input type="text" class="form-control" id="Hp" required [(ngModel)]="selectedAvatar.Hp" name="Hp">
+        </div>
+
+        <div class="form-group">
+          <label for="Lore">Lore:</label>
+          <input type="text" class="form-control" id="Lore" required [(ngModel)]="selectedAvatar.Lore" name="Lore">
+        </div>
+
+        <div class="form-group">
+          <label for="Phrase">Phrase:</label>
+          <input type="text" class="form-control" id="Phrase" required [(ngModel)]="selectedAvatar.Phrase" name="Phrase">
+        </div>
+
+        <div class="form-group">
+          <label for="Cost">Cost:</label>
+          <input type="text" class="form-control" id="Cost" required [(ngModel)]="selectedAvatar.Cost" name="Cost">
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!avatarForm.form.valid || submitted">Save Changes</button>
+      </form>
+    </div>
+    <div class="col-3" *ngIf="selectedAvatar">
+      <app-store-avatar-stats [displayedAvatar]='selectedAvatar' [event]="eventSubject.asObservable()"></app-store-avatar-stats>
+    </div>
+  </div>
+</div>
