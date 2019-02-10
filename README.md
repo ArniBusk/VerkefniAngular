@@ -1,12 +1,4 @@
-# ToDoList
-    1. Gera nýtt verkefni og repository og tengja
-    2. Ákveða hvernig Klasarnir líta út
-    3. Byrja á API inum
-    3,5. Bootstrappa 
-    4. Setja upp Klasana {Muna að hafa klasana eins allsstaðar}
-    5. setja upp Routing
-    6.setja upp Data Service
-    TODO add more items to array
+
 # Annarverkefni
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.2.
